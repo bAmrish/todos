@@ -1,0 +1,1 @@
+This is a simple todo application in done using the [ember](http://emberjs.com/) framework.
