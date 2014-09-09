@@ -1,0 +1,65 @@
+.container {
+	width: 500px;
+}
+
+.logo {
+	color: red;
+}
+
+.list {
+	list-style: none;
+}
+
+.item-state {
+	font-size: 20px;
+	display: inline-block;
+	width: 20px;
+	cursor: pointer;
+	position: relative;
+}
+
+.item-state.completed {
+	top: -5px;
+}
+
+.item-state.incomplete {
+	top: -5px;
+}
+
+.item-text.completed {
+	text-decoration: line-through;
+	color: #999;
+}
+
+.item-edit {
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.add-item-button {
+	margin: 5px 10px;
+}
+
+.add-item {
+	padding: 20px 0;
+	margin-left: 0px;
+}
+
+.add-item-text {
+	min-width: 250px;
+	padding: 10px;
+}
+
+.info {
+	margin-top: 20px;
+	padding-top: 10px;
+	border-top: 1px solid #eee;
+}
+
+.total-todos-label {
+	text-align: right;
+}
+
+.total-todos-text {
+	text-align: left;
+}

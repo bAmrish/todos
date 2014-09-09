@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ember.js • TodoMVC</title>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/app.css">
+    
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/handlebars/handlebars.js"></script>
+    <script type="text/javascript" src="bower_components/ember/ember.js"></script>
+<script type="text/javascript" src="bower_components/ember-data/ember-data.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/x-handlebars">
+      <div class="container">
+        <header class="header"><h1> <span class="logo">&#167;</span> Todo List</h1></header>
+        {{outlet}}
+      </div>  
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="todos">
+        <div class="add-item row">
+          <input type="text" class="col-md-10 add-item-text" placeholder="What needs to be done?">   
+          <button class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
+        </div>
+        <div class="list">
+          {{#each}}
+            {{todo-item todo=this}}
+          {{/each}}            
+        </div>
+        <div class="info">
+          <div class="info-text row">
+            <div class="col-md-10">{{completedTodos}}/{{length}} items completed</div>
+          </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="components/todo-item">
+      <div class="row list-item">
+        <span class="col-md-2 item-state completed" {{action "toggleComplete" todo}}>
+          {{#if todo.completed}}
+            &#x2713; <!--checked-->
+          {{else}}
+            &#x25a1; <!-- unchecked -->
+          {{/if}}
+        </span>
+        <span {{bind-attr class=":col-md-9 :item-text completed"}}>{{todo.text}}</span>
+        <span class="col-md-2 item-edit">
+          <span {{action "editTodo"   todo}}> &#9998;  </span> 
+          <span {{action "deleteTodo" todo}}> &#10007; </span>
+        </span>
+      </div>
+    </script>
+    
+
+  </body>
+</html> 
