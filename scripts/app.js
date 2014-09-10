@@ -25,10 +25,6 @@ Todos.TodosController = Ember.ArrayController.extend({
 	}.property('@each', '@each.completed'),
 
 	actions: {
-		toggleComplete: function(item) {
-			item.toggleProperty('completed');
-		},
-
 		addTodo: function(){
 			var todoText = Ember.$('.add-item-text').val();
 			
@@ -62,3 +58,14 @@ Todos.Todo.FIXTURES = [
 	{id: 2, text: 'Second Todo', completed: false}
 ];
 
+Todos.TodoItemComponent = Ember.Component.extend({
+	actions: {
+		toggleComplete: function(item) {
+			item.toggleProperty('completed');
+		},
+
+		delete: function(item) {
+			this.sendAction('delete', item);
+		}
+	}
+});

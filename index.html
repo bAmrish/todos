@@ -28,7 +28,7 @@
         </div>
         <div class="list">
           {{#each}}
-            {{todo-item todo=this}}
+            {{todo-item todo=this delete="deleteTodo"}}
           {{/each}}            
         </div>
         <div class="info">
@@ -49,8 +49,8 @@
         </span>
         <span {{bind-attr class=":col-md-9 :item-text completed"}}>{{todo.text}}</span>
         <span class="col-md-2 item-edit">
-          <span {{action "editTodo"   todo}}> &#9998;  </span> 
-          <span {{action "deleteTodo" todo}}> &#10007; </span>
+          <span {{action "edit"   todo}}> &#9998;  </span> 
+          <span {{action "delete" todo}}> &#10007; </span>
         </span>
       </div>
     </script>
