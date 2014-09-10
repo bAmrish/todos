@@ -24,7 +24,6 @@ body {
   line-height: 1.4em;
 	background-color: #FAECD7;	
   color: #4d4d4d;
-  width: 550px;
   margin: 0 auto;
 }
 
@@ -32,33 +31,78 @@ body {
 	width: 500px;
 }
 
+.list:before {
+  content: '';
+  border-left: 1px solid #428bca;
+  border-right: 1px solid #428bca;
+  width: 4px;
+  position: absolute;
+  top: -2px;
+  left: 45px;
+  height: 100%;
+}
+
+.list:after {
+  content: '';
+  border-left: 1px solid #428bca;
+  border-right: 1px solid #428bca;
+  width: 4px;
+  position: absolute;
+  top: -2px;
+  right: 70px;
+  height: 100%;
+}
+
+
 .logo {
 	color: red;
 }
 
 .list {
+	position: relative;
 	list-style: none;
+	border-top: 1px solid #999;
+}
+
+.no-todos-text, .list-item {
+	padding: 10px;
+	border-bottom: 1px solid #999;
+	display: inline-block;
+	width: 100%;
+}
+
+.no-todos-text {
+	padding-left: 50px;
 }
 
 .item-state {
-	font-size: 20px;
+	font-size: 35px;
 	display: inline-block;
-	width: 20px;
 	cursor: pointer;
 	position: relative;
 }
 
-.item-state.completed {
-	top: -5px;
+.item-state.incomplete {
+	top: -6px;
 }
 
-.item-state.incomplete {
-	top: -5px;
+.item-text {
+	padding-left: 25px;
+}
+
+.item-text input{
+	padding: 5px 10px;
+	width: 100%;
 }
 
 .item-text .completed {
 	text-decoration: line-through;
 	color: #999;
+}
+
+.item-edit span:nth-child(1) {
+	display: inline-block;
+	margin-right: 5px;
 }
 
 .item-edit {
@@ -83,15 +127,6 @@ body {
 .info {
 	margin-top: 20px;
 	padding-top: 10px;
-	border-top: 1px solid #eee;
-}
-
-.total-todos-label {
-	text-align: right;
-}
-
-.total-todos-text {
-	text-align: left;
 }
 
 .glowing-border {

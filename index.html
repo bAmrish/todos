@@ -29,9 +29,17 @@
           </form>  
         </div>
         <div class="list">
-          {{#each}}
-            {{todo-item todo=this delete="deleteTodo"}}
-          {{/each}}            
+          {{#if length}}
+            {{#each}}
+              {{todo-item todo=this delete="deleteTodo" class="list-item"}}
+            {{/each}} 
+          {{else}}
+            <div class="row">
+              <div class="col-md-12">
+                <span class="no-todos-text">Nothing to do. Add something!</span>
+              </div>
+            </div>
+          {{/if}}           
         </div>
         <div class="info">
           <div class="info-text row">
@@ -41,8 +49,8 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="components/todo-item">
-      <div class="row list-item">
-        <span class="col-md-2 item-state completed" {{action "toggleComplete" todo}} role=button>
+      <div class="row">
+        <span {{bind-attr class=":col-md-1 :item-state todo.completed:completed:incomplete"}} {{action "toggleComplete" todo}} role=button>
           {{#if todo.completed}}
             &#x2713; <!--checked-->
           {{else}}
