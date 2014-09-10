@@ -61,6 +61,8 @@ Todos.Todo.FIXTURES = [
 Todos.TodoItemComponent = Ember.Component.extend({
 	_inEditMode: false,
 
+	text: Ember.computed.alias('todo.text'),
+
 	actions: {
 		toggleComplete: function(item) {
 			item.toggleProperty('completed');
@@ -80,12 +82,36 @@ Todos.TodoItemComponent = Ember.Component.extend({
 	}
 });
 
-Todos.TodoItemEditComponent = Ember.Component.extend({
+Todos.TodoItemEditComponent = Ember.TextField.extend({
 	classNames: ['todo-item-edit'],
 	
 	actions: {
-		done: function(){
+		focusOut: function(){
 			this.sendAction('done');
 		}
 	}
+});
+
+
+Ember.TextField.reopen({
+  didInsertElement: function(){
+    if(this.get('autofocus')){
+      this.$().focus();      
+      var element = this.$()[0]; 
+
+        if (element.setSelectionRange){
+		  	// If this function exists then use it
+	        // (Doesn't work in IE)
+
+        	// Double the length because Opera is inconsistent 
+        	// about whether a carriage return is one character or two. Sigh.
+	        var len = this.$().val().length * 2;
+	    	element.setSelectionRange(len, len);
+        } else {
+	        // ... otherwise replace the contents with itself
+	        // (Doesn't work in Google Chrome)
+	        this.$().val(this.$().val());
+        }
+    }
+  }
 });

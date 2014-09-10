@@ -1,3 +1,33 @@
+html, body {	
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  /*-moz-appearance: none;*/
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+body {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+	background-color: #FAECD7;	
+  color: #4d4d4d;
+  width: 550px;
+  margin: 0 auto;
+}
+
 .container {
 	width: 500px;
 }
@@ -62,4 +92,15 @@
 
 .total-todos-text {
 	text-align: left;
+}
+
+.glowing-border {
+    border: 1px solid #dadada;
+    border-radius: 3px;
+}
+
+.glowing-border:focus { 
+    outline: none;
+    border-color: #ed934e;
+    box-shadow: 0 0 3px #ed934e;
 }

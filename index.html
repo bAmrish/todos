@@ -24,7 +24,7 @@
     <script type="text/x-handlebars" data-template-name="todos">
         <div class="add-item row">
           <form id="add-item-form">
-            <input type="text" class="col-md-10 add-item-text" placeholder="What needs to be done?">   
+            <input type="text" class="col-md-10 add-item-text glowing-border" placeholder="What needs to be done?">   
             <button type=submit class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
           </form>  
         </div>
@@ -52,9 +52,9 @@
 
         <span {{bind-attr class=":col-md-9 :item-text"}}>
           {{#if _inEditMode}}
-            {{todo-item-edit value=todo.text done="editComplete"}}
+            {{input value=text class="glowing-border" focus-out="editComplete" autofocus=true}}
           {{else}}
-            <span {{bind-attr class="todo.completed"}} {{action "edit" todo}}  title="Click to edit.">{{todo.text}}</span>
+            <span {{bind-attr class="todo.completed"}} {{action "edit" todo}}  title="Click to edit.">{{text}}</span>
           {{/if}}        
         </span>
 
@@ -63,10 +63,6 @@
           <span {{action "delete" todo}}> &#10007; </span>
         </span>
       </div>
-    </script>
-    
-    <script type="text/x-handlebars" data-template-name="components/todo-item-edit">
-      <input type="text" {{bind-attr value=value}} {{action "done" on="focusOut"}}>
     </script>
   </body>
 </html> 
