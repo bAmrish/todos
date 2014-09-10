@@ -59,13 +59,38 @@ Todos.Todo.FIXTURES = [
 ];
 
 Todos.TodoItemComponent = Ember.Component.extend({
+	_inEditMode: false,
+
 	actions: {
 		toggleComplete: function(item) {
 			item.toggleProperty('completed');
 		},
 
+		edit: function(item){
+			this.toggleProperty('_inEditMode');
+			// Ember.run.next(function(){
+			// 	this.$('input.item-text-edit').on('blur', function() {
+			// 		this.toggleProperty('_inEditMode');
+			// 	}.bind(this));
+			// }.bind(this));
+		},
+
+		editComplete: function () {
+			this.toggleProperty('_inEditMode');
+		},
+
 		delete: function(item) {
 			this.sendAction('delete', item);
+		}
+	}
+});
+
+Todos.TodoItemEditComponent = Ember.Component.extend({
+	classNames: ['todo-item-edit'],
+	
+	actions: {
+		done: function(){
+			this.sendAction('done');
 		}
 	}
 });
