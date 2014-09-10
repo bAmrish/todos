@@ -93,6 +93,7 @@ body {
 .item-text input{
 	padding: 5px 10px;
 	width: 100%;
+	background-color: #f7eee1;
 }
 
 .item-text .completed {
