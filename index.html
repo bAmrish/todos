@@ -23,8 +23,10 @@
 
     <script type="text/x-handlebars" data-template-name="todos">
         <div class="add-item row">
-          <input type="text" class="col-md-10 add-item-text" placeholder="What needs to be done?">   
-          <button class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
+          <form id="add-item-form">
+            <input type="text" class="col-md-10 add-item-text" placeholder="What needs to be done?">   
+            <button type=submit class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
+          </form>  
         </div>
         <div class="list">
           {{#each}}
@@ -40,14 +42,14 @@
 
     <script type="text/x-handlebars" data-template-name="components/todo-item">
       <div class="row list-item">
-        <span class="col-md-2 item-state completed" {{action "toggleComplete" todo}}>
+        <span class="col-md-2 item-state completed" {{action "toggleComplete" todo}} role=button>
           {{#if todo.completed}}
             &#x2713; <!--checked-->
           {{else}}
             &#x25a1; <!-- unchecked -->
           {{/if}}
         </span>
-        <span {{bind-attr class=":col-md-9 :item-text completed"}}>{{todo.text}}</span>
+        <span {{bind-attr class=":col-md-9 :item-text todo.completed"}}>{{todo.text}}</span>
         <span class="col-md-2 item-edit">
           <span {{action "edit"   todo}}> &#9998;  </span> 
           <span {{action "delete" todo}}> &#10007; </span>
