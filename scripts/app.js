@@ -68,11 +68,6 @@ Todos.TodoItemComponent = Ember.Component.extend({
 
 		edit: function(item){
 			this.toggleProperty('_inEditMode');
-			// Ember.run.next(function(){
-			// 	this.$('input.item-text-edit').on('blur', function() {
-			// 		this.toggleProperty('_inEditMode');
-			// 	}.bind(this));
-			// }.bind(this));
 		},
 
 		editComplete: function () {

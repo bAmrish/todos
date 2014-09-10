@@ -52,7 +52,6 @@
 
         <span {{bind-attr class=":col-md-9 :item-text"}}>
           {{#if _inEditMode}}
-            {{!--<input type=text {{bind-attr class=":col-md-9 :item-text-edit" value=todo.text}}> --}}
             {{todo-item-edit value=todo.text done="editComplete"}}
           {{else}}
             <span {{bind-attr class="todo.completed"}} {{action "edit" todo}}  title="Click to edit.">{{todo.text}}</span>
