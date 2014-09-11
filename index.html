@@ -6,7 +6,7 @@
     <title>Ember.js • TodoMVC</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="styles/app.css">
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
     <script type="text/javascript" src="bower_components/handlebars/handlebars.js"></script>
     <script type="text/javascript" src="bower_components/ember/ember.js"></script>
     <script type="text/javascript" src="bower_components/ember-data/ember-data.js"></script>
@@ -36,7 +36,7 @@
               {{#each}}
                 {{#link-to "notebook" this tagName="li"}}
                   {{#link-to "notebook" this}}
-                    {{notebook-item item=this delete="deleteNotebook"}}
+                    {{notebook-item item=this deleteItem="deleteNotebook"}}
                   {{/link-to}}
                 {{/link-to}}
               {{/each}}
@@ -57,7 +57,7 @@
       {{/if}}    
       <span class="notebook-item-toolbar">
         <span class="edit-notebook notebook-toolbar-item" {{action "edit" item}}>&#9998;</span>
-        <span class="delete-notebook notebook-toolbar-item" {{action "delete" item}}>&#10007;</span>
+        <span class="delete-notebook notebook-toolbar-item" {{action "deleteItem" item}}>&#10007;</span>
       </span>
       
     </script>
@@ -85,7 +85,7 @@
         <div class="list">
           {{#if todos.length}}
             {{#each todos}}
-              {{todo-item todo=this delete="deleteTodo" class="list-item"}}
+              {{todo-item todo=this deleteItem="deleteTodo" class="list-item"}}
             {{/each}} 
           {{else}}
             <div class="row">
@@ -122,7 +122,7 @@
 
         <span class="col-xs-2 item-edit">
           <span {{action "edit"   todo}}> &#9998;  </span> 
-          <span {{action "delete" todo}}> &#10007; </span>
+          <span {{action "deleteItem" todo}}> &#10007; </span>
         </span>
       </div>
     </script>

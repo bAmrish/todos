@@ -132,8 +132,8 @@ Todos.TodoItemComponent = Ember.Component.extend({
 			this.toggleProperty('_inEditMode');
 		},
 
-		delete: function(item) {
-			this.sendAction('delete', item);
+		deleteItem: function(item) {
+			this.sendAction('deleteItem', item);
 		}
 	}
 });
@@ -153,8 +153,8 @@ Todos.NotebookItemComponent = Ember.Component.extend({
 	actions: {
 		_inEditMode: false,
 
-		delete: function(item){
-			this.sendAction('delete', item);
+		deleteItem: function(item){
+			this.sendAction('deleteItem', item);
 		},
 
 		edit: function(){
