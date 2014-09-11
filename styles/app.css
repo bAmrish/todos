@@ -66,6 +66,7 @@ body {
 	position: relative;
 	list-style: none;
 	border-top: 1px solid #999;
+  margin-bottom: 15px;
 }
 
 .list-item {
@@ -197,4 +198,17 @@ body {
 #side-bar ul.nav li a span.notebook-toolbar-item {
   display: inline-block;
   padding: 5px;
+}
+
+.info {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  background: rgb(234, 233, 232);
+  z-index: -1;
+  padding: 10px;
+  bottom: -56px;
+  border: 1px solid #999;
+  box-shadow: 1px 0px 0px 1px #aaa;
+  border-radius: 4px;
 }
