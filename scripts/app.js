@@ -25,7 +25,32 @@ Todos.NotebooksRoute = Ember.Route.extend({
 Todos.NotebookRoute = Ember.Route.extend({
 	model: function(params){
 		return this.store.find('notebook', params.notebook_id);
-	}	
+	},	
+
+	actions: {
+		didiTransition: function(){
+			Ember.$('.add-item-text').focus();
+		}
+	}
+});
+
+Todos.NotebooksController = Ember.ArrayController.extend({
+	actions: {
+		addNotebook: function(){
+			var notebookName = Ember.$('#add-notebook').val();
+			if(Ember.isEmpty(notebookName.trim())){
+				return;
+			}
+
+			var newNotebook = this.store.createRecord('notebook', {
+				name: notebookName
+			});
+
+			this.transitionToRoute('notebook', newNotebook);
+			
+			Ember.$('#add-notebook').val('');
+		}
+	}
 });
 
 Todos.NotebookController = Ember.ObjectController.extend({
@@ -36,18 +61,18 @@ Todos.NotebookController = Ember.ObjectController.extend({
 	actions: {
 		addTodo: function(){
 			var todoText = Ember.$('.add-item-text').val();
-			var newNotebook;
+			var newTodo;
 
 			if(Ember.isEmpty(todoText.trim())) {
 				return;
 			}
 
-			newNotebook = this.store.createRecord('todo', {
+			newTodo = this.store.createRecord('todo', {
 				text: todoText,
 				completed: false
 			});
 
-			this.get('todos').addObject(newNotebook);
+			this.get('todos').addObject(newTodo);
 
 			Ember.$('.add-item-text').val("");
 			Ember.$('.add-item-text').focus();

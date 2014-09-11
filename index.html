@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Ember.js • TodoMVC</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="styles/app.css">
@@ -23,16 +23,25 @@
     <script type="text/x-handlebars" data-template-name="notebooks">
         <div class="row" id="todos">
           <div class="col-md-3" id="side-bar">
-            <div>Your Notebooks:</div>
-            <ul class="nav nav-pills nav-stacked">
-            {{#each}}
-              {{#link-to "notebook" this tagName="li"}}
-                {{#link-to "notebook" this}}
-                  {{name}}
+            <div id="side-bar-wrapper">
+
+              <h3><label class="label label-default">Your Notebooks:</label></h3>
+              <form id="add-notebook-form" class="form-inline">
+                <div class="form-group">                
+                  <input type="text" class="form-control glowing-border" id="add-notebook" placeholder="Add a new notebook">
+                </div>
+                <button type=submit id="add-notebook-button" class="btn btn-primary" {{action "addNotebook"}}>+</button>
+              </form>  
+              <ul class="nav nav-pills nav-stacked" id="notebooks-list">
+              {{#each}}
+                {{#link-to "notebook" this tagName="li"}}
+                  {{#link-to "notebook" this}}
+                    {{name}}
+                  {{/link-to}}
                 {{/link-to}}
-              {{/link-to}}
-            {{/each}}
-            </ul>            
+              {{/each}}
+              </ul>            
+            </div>
           </div>
           <div class="col-md-9" id="notebook">
             {{outlet}}
@@ -40,10 +49,23 @@
         </div>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="notebook">
+    <script type="text/x-handlebars" data-template-name="notebooks/index">
+      <div id="notebook-index">
+        <div class="row">
+          <div class="col-xs-12">
+            <span id="notebook-index-note">
+              Please select a notebook.
+            </span>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="notebook">    
         <div class="add-item row">
+          <h3>Notebook: {{name}}</h3>
           <form id="add-item-form">
-            <input type="text" class="col-md-10 add-item-text glowing-border" placeholder="What needs to be done?">   
+            <input type="text" class="col-md-10 add-item-text glowing-border" placeholder="What needs to be done?" autofocus>   
             <button type=submit class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
           </form>  
         </div>
@@ -55,7 +77,7 @@
           {{else}}
             <div class="row">
               <div class="col-md-12">
-                <span class="no-todos-text">Nothing to do. Add something!</span>
+                <span id="no-todos-text">Nothing to do. Add something!</span>
               </div>
             </div>
           {{/if}}           
@@ -81,7 +103,7 @@
           {{#if _inEditMode}}
             {{input value=text class="glowing-border" focus-out="editComplete" autofocus=true}}
           {{else}}
-            <span {{bind-attr class="todo.completed"}} {{action "edit" todo}}  title="Click to edit.">{{text}}</span>
+            <label {{bind-attr class="todo.completed"}} {{action "edit" todo}}  title="Click to edit.">{{text}}</label>
           {{/if}}        
         </span>
 

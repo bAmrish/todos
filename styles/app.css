@@ -22,7 +22,7 @@ button {
 body {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
-	background-color: #FAECD7;	
+	/*background-color: #FAECD7;	*/
   color: #4d4d4d;
   margin: 0 auto;
 }
@@ -68,15 +68,18 @@ body {
 	border-top: 1px solid #999;
 }
 
-.no-todos-text, .list-item {
+.list-item {
 	padding: 10px;
 	border-bottom: 1px solid #999;
 	display: inline-block;
 	width: 100%;
 }
 
-.no-todos-text {
-	padding-left: 50px;
+#no-todos-text {
+  padding: 10px 10px 10px 70px;
+  border-bottom: 1px solid #999;
+  display: inline-block;
+  width: 100%;
 }
 
 .item-state {
@@ -90,8 +93,8 @@ body {
 	top: -6px;
 }
 
-.item-text {
-	padding-left: 25px;
+.item-text label {
+  cursor: pointer;
 }
 
 .item-text input{
@@ -143,4 +146,35 @@ body {
     outline: none;
     border-color: #ed934e;
     box-shadow: 0 0 3px #ed934e;
+}
+
+#side-bar h3 label {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0px;
+}
+
+#side-bar h3 {
+  margin-top: 5px;
+}
+
+#notebooks-list {
+  margin-top: 15px;
+}
+
+#notebook {
+  border: 1px solid #999;
+  box-shadow: 3px 3px 3px #999;
+  border-radius: 5px;
+  background-color: #ECECEC;
+}
+
+#notebook-index {
+  min-height: 200px;
+}
+
+#notebook-index-note {
+  font-size: 20px;
+  display: inline-block;
+  margin-top: 30px;
 }
