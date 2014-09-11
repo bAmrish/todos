@@ -183,8 +183,18 @@ body {
   position: relative;
 }
 
-#side-bar ul.nav li a span.delete-notebook {
+
+#side-bar ul.nav li input{
+  color: #000;
+}
+
+#side-bar ul.nav li a span.notebook-item-toolbar {
   position: absolute;
   right: 10px;
   cursor: pointer;
+}
+
+#side-bar ul.nav li a span.notebook-toolbar-item {
+  display: inline-block;
+  padding: 5px;
 }

@@ -55,7 +55,11 @@
       {{else}}
         <label>{{item.name}}</label>
       {{/if}}    
-      <span class="delete-notebook" {{action "delete" item}}>&#10007;</span>
+      <span class="notebook-item-toolbar">
+        <span class="edit-notebook notebook-toolbar-item" {{action "edit" item}}>&#9998;</span>
+        <span class="delete-notebook notebook-toolbar-item" {{action "delete" item}}>&#10007;</span>
+      </span>
+      
     </script>
 
     <script type="text/x-handlebars" data-template-name="notebooks/index">

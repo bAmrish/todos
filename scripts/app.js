@@ -138,6 +138,7 @@ Todos.TodoItemComponent = Ember.Component.extend({
 	}
 });
 
+//TODO: Remmove this
 Todos.TodoItemEditComponent = Ember.TextField.extend({
 	classNames: ['todo-item-edit'],
 	
@@ -150,8 +151,18 @@ Todos.TodoItemEditComponent = Ember.TextField.extend({
 
 Todos.NotebookItemComponent = Ember.Component.extend({
 	actions: {
+		_inEditMode: false,
+
 		delete: function(item){
 			this.sendAction('delete', item);
+		},
+
+		edit: function(){
+			this.toggleProperty('_inEditMode')
+		},
+
+		editComplete: function(){
+			this.toggleProperty('_inEditMode')
 		}
 	}
 });
