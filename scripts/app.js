@@ -3,39 +3,51 @@ window.Todos = Ember.Application.create();
 Todos.ApplicationAdapter = DS.FixtureAdapter;
 
 Todos.Router.map(function(){
+	this.resource('notebooks', function(){
+		this.resource('notebook', {'path': ':notebook_id'});
+	})
 	this.resource('todos');
 });
 
 
 Todos.IndexRoute = Ember.Route.extend({
 	redirect: function () {
-        this.transitionTo('todos');
+        this.transitionTo('notebooks');
     }
 });
 
-Todos.TodosRoute = Ember.Route.extend({
+Todos.NotebooksRoute = Ember.Route.extend({
 	model: function(){
-		return this.store.findAll('todo');
+		return this.store.findAll('notebook');
 	}
 });
 
-Todos.TodosController = Ember.ArrayController.extend({
+Todos.NotebookRoute = Ember.Route.extend({
+	model: function(params){
+		return this.store.find('notebook', params.notebook_id);
+	}	
+});
+
+Todos.NotebookController = Ember.ObjectController.extend({
 	completedTodos: function(){
-		return this.filterBy('completed', true).length;
-	}.property('@each', '@each.completed'),
+		return this.get('todos').filterBy('completed', true).length;
+	}.property('todos.@each', 'todos.@each.completed'),
 
 	actions: {
 		addTodo: function(){
 			var todoText = Ember.$('.add-item-text').val();
-			
+			var newNotebook;
+
 			if(Ember.isEmpty(todoText.trim())) {
 				return;
 			}
 
-			this.store.createRecord('todo', {
+			newNotebook = this.store.createRecord('todo', {
 				text: todoText,
 				completed: false
 			});
+
+			this.get('todos').addObject(newNotebook);
 
 			Ember.$('.add-item-text').val("");
 			Ember.$('.add-item-text').focus();
@@ -50,13 +62,27 @@ Todos.TodosController = Ember.ArrayController.extend({
 
 Todos.Todo = DS.Model.extend({
 	'text': DS.attr('string'),
-	'completed': DS.attr('boolean')
+	'completed': DS.attr('boolean'),
+	'notebook': DS.belongsTo('notebook')
 });
 
+Todos.Notebook = DS.Model.extend({
+	name: DS.attr('string'),
+	todos: DS.hasMany('todo', {async: true})
+});
+
+
 Todos.Todo.FIXTURES = [
-	{id: 1, text: 'First Todo', completed: true},
-	{id: 2, text: 'Second Todo', completed: false}
+	{id: 1, text: 'Get Milk', completed: true, notebook: 1},
+	{id: 2, text: 'Get Eggs', completed: false, notebook: 1},
+	{id: 3, text: 'Work on project 1', completed: false, notebook: 2},
+	{id: 4, text: 'Send email to someone', completed: false, notebook: 2},
 ];
+
+Todos.Notebook.FIXTURES = [
+	{id: 1, name: 'Personal', todos: [1, 2]},
+	{id: 2, name: 'Work', todos: [3, 4]}
+]
 
 Todos.TodoItemComponent = Ember.Component.extend({
 	_inEditMode: false,

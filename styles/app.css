@@ -28,7 +28,7 @@ body {
 }
 
 .container {
-	width: 500px;
+	/*width: 640px;*/
 }
 
 .list:before {
@@ -42,7 +42,7 @@ body {
   height: 100%;
 }
 
-.list:after {
+/*.list:after {
   content: '';
   border-left: 1px solid #428bca;
   border-right: 1px solid #428bca;
@@ -52,7 +52,7 @@ body {
   right: 70px;
   height: 100%;
 }
-
+*/
 
 .logo {
 	color: red;

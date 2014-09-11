@@ -21,16 +21,34 @@
       </div>  
     </script>
 
-    <script type="text/x-handlebars" data-template-name="todos">
+    <script type="text/x-handlebars" data-template-name="notebooks">
+        <div class="row" id="todos">
+          <div class="col-md-4" id="side-bar">
+            <div>Your Notebooks:</div>
+            <ul>
+            {{#each}}
+              <li>{{#link-to "notebook" this}} {{name}} {{/link-to}}</li>
+            {{/each}}
+            </ul>
+            
+          </div>
+          <div class="col-md-8" id="notebook">
+            {{outlet}}
+          </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="notebook">
         <div class="add-item row">
+          <h3>{{name}}</h3>
           <form id="add-item-form">
             <input type="text" class="col-md-10 add-item-text glowing-border" placeholder="What needs to be done?">   
             <button type=submit class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
           </form>  
         </div>
         <div class="list">
-          {{#if length}}
-            {{#each}}
+          {{#if todos.length}}
+            {{#each todos}}
               {{todo-item todo=this delete="deleteTodo" class="list-item"}}
             {{/each}} 
           {{else}}
@@ -43,7 +61,7 @@
         </div>
         <div class="info">
           <div class="info-text row">
-            <div class="col-md-10">{{completedTodos}}/{{length}} items completed</div>
+            <div class="col-md-10">{{completedTodos}}/{{todos.length}} items completed</div>
           </div>
         </div>
     </script>
