@@ -6,7 +6,6 @@ Todos.Router.map(function(){
 	this.resource('notebooks', function(){
 		this.resource('notebook', {'path': ':notebook_id'});
 	})
-	this.resource('todos');
 });
 
 
@@ -138,17 +137,6 @@ Todos.TodoItemComponent = Ember.Component.extend({
 	}
 });
 
-//TODO: Remmove this
-Todos.TodoItemEditComponent = Ember.TextField.extend({
-	classNames: ['todo-item-edit'],
-	
-	actions: {
-		focusOut: function(){
-			this.sendAction('done');
-		}
-	}
-});
-
 Todos.NotebookItemComponent = Ember.Component.extend({
 	actions: {
 		_inEditMode: false,
@@ -166,7 +154,6 @@ Todos.NotebookItemComponent = Ember.Component.extend({
 		}
 	}
 });
-
 
 Ember.TextField.reopen({
   didInsertElement: function(){
