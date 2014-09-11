@@ -88,10 +88,12 @@ body {
 	display: inline-block;
 	cursor: pointer;
 	position: relative;
+  color: lightgray;
 }
 
-.item-state.incomplete {
-	top: -6px;
+
+.item-state.completed {
+  color: green;
 }
 
 .item-text label {

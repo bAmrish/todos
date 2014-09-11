@@ -105,11 +105,7 @@
     <script type="text/x-handlebars" data-template-name="components/todo-item">
       <div class="row">
         <span {{bind-attr class=":col-xs-1 :item-state todo.completed:completed:incomplete"}} {{action "toggleComplete" todo}} role=button>
-          {{#if todo.completed}}
             &#x2713; <!--checked-->
-          {{else}}
-            &#x25a1; <!-- unchecked -->
-          {{/if}}
         </span>
 
         <span {{bind-attr class=":col-xs-9 :item-text"}}>
