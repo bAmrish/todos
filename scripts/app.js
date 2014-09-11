@@ -148,6 +148,14 @@ Todos.TodoItemEditComponent = Ember.TextField.extend({
 	}
 });
 
+Todos.NotebookItemComponent = Ember.Component.extend({
+	actions: {
+		delete: function(item){
+			this.sendAction('delete', item);
+		}
+	}
+});
+
 
 Ember.TextField.reopen({
   didInsertElement: function(){

@@ -36,7 +36,7 @@
               {{#each}}
                 {{#link-to "notebook" this tagName="li"}}
                   {{#link-to "notebook" this}}
-                    {{name}} <span class="delete-notebook" {{action "deleteNotebook" this}}>&#10007;</span>
+                    {{notebook-item item=this delete="deleteNotebook"}}
                   {{/link-to}}
                 {{/link-to}}
               {{/each}}
@@ -47,6 +47,15 @@
             {{outlet}}
           </div>
         </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="components/notebook-item">
+      {{#if _inEditMode}}
+        {{input value=item.name class="glowing-border" focus-out="editComplete" autofocus=true}}
+      {{else}}
+        <label>{{item.name}}</label>
+      {{/if}}    
+      <span class="delete-notebook" {{action "delete" item}}>&#10007;</span>
     </script>
 
     <script type="text/x-handlebars" data-template-name="notebooks/index">
