@@ -58,6 +58,10 @@ body {
 	color: red;
 }
 
+#todos {
+  margin-top: 15px;
+}
+
 .list {
 	position: relative;
 	list-style: none;
@@ -116,7 +120,7 @@ body {
 }
 
 .add-item {
-	padding: 20px 0;
+	padding: 0 0 20px 0;
 	margin-left: 0px;
 }
 
