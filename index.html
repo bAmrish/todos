@@ -36,7 +36,7 @@
               {{#each}}
                 {{#link-to "notebook" this tagName="li"}}
                   {{#link-to "notebook" this}}
-                    {{name}}
+                    {{name}} <span class="delete-notebook" {{action "deleteNotebook" this}}>&#10007;</span>
                   {{/link-to}}
                 {{/link-to}}
               {{/each}}

@@ -49,6 +49,11 @@ Todos.NotebooksController = Ember.ArrayController.extend({
 			this.transitionToRoute('notebook', newNotebook);
 			
 			Ember.$('#add-notebook').val('');
+		},
+
+		deleteNotebook: function(notebook){
+			this.store.deleteRecord(notebook);
+			this.transitionToRoute('notebooks');
 		}
 	}
 });
