@@ -135,11 +135,6 @@ body {
 	padding: 10px;
 }
 
-.info {
-	margin-top: 20px;
-	padding-top: 10px;
-}
-
 .glowing-border {
     border: 1px solid #dadada;
     border-radius: 3px;
@@ -213,4 +208,10 @@ body {
   border: 1px solid #999;
   box-shadow: 1px 0px 0px 1px #aaa;
   border-radius: 4px;
+}
+
+#filters {
+  margin-top: 12px;
+  float: right;
+  margin-right: 10px;
 }

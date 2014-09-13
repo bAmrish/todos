@@ -24,7 +24,6 @@
         <div class="row" id="todos">
           <div class="col-md-3" id="side-bar">
             <div id="side-bar-wrapper">
-
               <h3><label class="label label-default">Your Notebooks:</label></h3>
               <form id="add-notebook-form" class="form-inline">
                 <div class="form-group">                
@@ -58,8 +57,7 @@
       <span class="notebook-item-toolbar">
         <span class="edit-notebook notebook-toolbar-item" {{action "edit" item}}>&#9998;</span>
         <span class="delete-notebook notebook-toolbar-item" {{action "deleteItem" item}}>&#10007;</span>
-      </span>
-      
+      </span>      
     </script>
 
     <script type="text/x-handlebars" data-template-name="notebooks/index">
@@ -76,7 +74,16 @@
 
     <script type="text/x-handlebars" data-template-name="notebook">
       <div class="add-item row">
-        <h3>Notebook: {{name}}</h3>
+        <div class="row">
+          <div class="col-md-7"><h3>Notebook: {{name}}</h3></div>
+          <div class="col-md-5">
+            <div class="btn-group" id="filters">
+              {{#link-to "notebook.all" tagName="button" class="btn btn-default"}} All {{/link-to}}
+              {{#link-to "notebook.active" tagName="button" class="btn btn-default"}} Active {{/link-to}}
+              {{#link-to "notebook.completed" tagName="button" class="btn btn-default"}} Completed {{/link-to}}
+            </div>  
+          </div>
+        </div>
         <form id="add-item-form">
           <input type="text" class="col-md-10 add-item-text glowing-border" placeholder="What needs to be done?" autofocus>   
           <button type=submit class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
@@ -86,10 +93,8 @@
         {{outlet}}
       </div>
       <div class="info">
-          <div class="info-text row">
-            <div class="col-md-10">{{completedTodos}}/{{todos.length}} items completed</div>            
-          </div>
-        </div>
+        {{completedTodos}}/{{todos.length}} items completed
+      </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="notebook/all">
