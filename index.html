@@ -74,32 +74,48 @@
       </div>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="notebook">    
-        <div class="add-item row">
-          <h3>Notebook: {{name}}</h3>
-          <form id="add-item-form">
-            <input type="text" class="col-md-10 add-item-text glowing-border" placeholder="What needs to be done?" autofocus>   
-            <button type=submit class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
-          </form>  
-        </div>
-        <div class="list">
-          {{#if todos.length}}
-            {{#each todos}}
-              {{todo-item todo=this deleteItem="deleteTodo" class="list-item"}}
-            {{/each}} 
-          {{else}}
-            <div class="row">
-              <div class="col-md-12">
-                <span id="no-todos-text">Nothing to do. Add something!</span>
-              </div>
-            </div>
-          {{/if}}           
-        </div>
-        <div class="info">
+    <script type="text/x-handlebars" data-template-name="notebook">
+      <div class="add-item row">
+        <h3>Notebook: {{name}}</h3>
+        <form id="add-item-form">
+          <input type="text" class="col-md-10 add-item-text glowing-border" placeholder="What needs to be done?" autofocus>   
+          <button type=submit class="btn btn-primary add-item-button" {{action "addTodo"}}>Add</button>
+        </form>  
+      </div>
+      <div class="list">
+        {{outlet}}
+      </div>
+      <div class="info">
           <div class="info-text row">
-            <div class="col-md-10">{{completedTodos}}/{{todos.length}} items completed</div>
+            <div class="col-md-10">{{completedTodos}}/{{todos.length}} items completed</div>            
           </div>
         </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="notebook/all">
+      {{partial "todo_list"}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="notebook/completed">
+      {{partial "todo_list"}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="notebook/active">
+      {{partial "todo_list"}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="_todo_list">    
+      {{#if filteredTodos.length}}
+        {{#each filteredTodos}}
+          {{todo-item todo=this deleteItem="deleteTodo" class="list-item"}}
+        {{/each}} 
+      {{else}}
+        <div class="row">
+          <div class="col-md-12">
+            <span id="no-todos-text">Nothing to do. Add something!</span>
+          </div>
+        </div>
+      {{/if}}           
     </script>
 
     <script type="text/x-handlebars" data-template-name="components/todo-item">

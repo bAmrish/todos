@@ -4,10 +4,13 @@ Todos.ApplicationAdapter = DS.FixtureAdapter;
 
 Todos.Router.map(function(){
 	this.resource('notebooks', function(){
-		this.resource('notebook', {'path': ':notebook_id'});
+		this.resource('notebook', {'path': ':notebook_id'}, function(){
+			this.route('all');
+			this.route('completed');
+			this.route('active');
+		});
 	})
 });
-
 
 Todos.IndexRoute = Ember.Route.extend({
 	redirect: function () {
@@ -24,13 +27,41 @@ Todos.NotebooksRoute = Ember.Route.extend({
 Todos.NotebookRoute = Ember.Route.extend({
 	model: function(params){
 		return this.store.find('notebook', params.notebook_id);
-	},	
-
-	actions: {
-		didiTransition: function(){
-			Ember.$('.add-item-text').focus();
-		}
 	}
+});
+
+Todos.NotebookIndexRoute = Ember.Route.extend({
+	redirect: function(){
+		this.transitionTo('notebook.all')
+	}
+});
+
+Todos.NotebookAllController = Ember.ObjectController.extend({
+	needs: ['notebook'],
+
+	filteredTodos: Ember.computed.alias('controllers.notebook.todos')
+});
+
+Todos.NotebookCompletedController = Ember.ObjectController.extend({
+	needs: ['notebook'],
+
+	allTodos: Ember.computed.alias('controllers.notebook.todos'),
+
+	filteredTodos: function(){
+		return this.get('allTodos').filterBy('completed', true)
+	}.property('allTodos', 'allTodos.@each', 'allTodos.@each.completed')
+
+});
+
+Todos.NotebookActiveController = Ember.ObjectController.extend({
+	needs: ['notebook'],
+
+	allTodos: Ember.computed.alias('controllers.notebook.todos'),
+
+	filteredTodos: function(){
+		return this.get('allTodos').filterBy('completed', false)
+	}.property('allTodos', 'allTodos.@each', 'allTodos.@each.completed')
+
 });
 
 Todos.NotebooksController = Ember.ArrayController.extend({
